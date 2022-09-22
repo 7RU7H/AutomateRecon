@@ -5,7 +5,7 @@ if [ "$#" -ne $ARGTOTAL ]; then
 	exit
 fi
 
-mkdir $1/{nmap,masscan,feroxbuster,nuclei,nikto} -p
+mkdir $1/{nmap,masscan,feroxbuster,nuclei,nikto,ikescan} -p
 
 
 
