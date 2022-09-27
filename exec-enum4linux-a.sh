@@ -5,8 +5,9 @@ if [ "$#" -ne 1 ]; then
 	exit
 fi
 
+CWD=$(pwd)
 dash_delimited_ip=$(echo $1 | tr -s '.' '-')
-enum4linux -a $1 | tee -a enumFourLinux/efl-a-$dash_delimited_ip
+enum4linux -a $1 | tee -a $CWD/enumFourLinux/efl-a-$dash_delimited_ip
 
 
 
