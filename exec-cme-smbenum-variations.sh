@@ -1,14 +1,13 @@
 #!/bin/bash
 
 if [ "$#" -ne 1  ]; then
-	echo "Usage: $0 <excepted> <arguments>"
+	echo "Usage: $0 <IP>"
 	exit
 fi
 
 
 dash_delimited_ip=$(echo $1 | tr -s '.' '-')
 CWD=$(pwd)
-mkdir -p $CWD/crackmapexec/smb-enumeration/$dash_delimited_ip
 crackmapexec smb $1 --shares | tee -a $CWD/crackmapexec/smb-enumeration/$dash_delimited_ip
 echo "" | tee -a $CWD/crackmapexec/smb-enumeration/$dash_delimited_ip
 echo "" | tee -a $CWD/crackmapexec/smb-enumeration/$dash_delimited_ip

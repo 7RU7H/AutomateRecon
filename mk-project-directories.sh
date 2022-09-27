@@ -6,6 +6,7 @@ if [ "$#" -ne $ARGTOTAL ]; then
 fi
 
 mkdir $1/{nmap,masscan,feroxbuster,nuclei,nikto,ikescan,cmsseek,gospider} -p
+mkdir $1/crackmapexec/{smb-enumeration} -p
 
 
 
