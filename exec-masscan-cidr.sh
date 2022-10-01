@@ -6,6 +6,7 @@ if [ "$#" -eq 0 ]; then
 	exit
 fi
 
-rate_flag="--rate="
-interface_flag="-e "
-sudo masscan -oG masscan/cidr-$1-masscan.log $interface $rate $1
+
+dash_delimited_network_range=$(echo $1 | tr -s '.' '-' | sed 's#/#-cidr-#g')
+CWD=$(pwd)
+sudo masscan -oG $CWD/masscan/$dash_delimited_network_range-masscan.log --top-ports 100 -e $interface --rate $rate $1
