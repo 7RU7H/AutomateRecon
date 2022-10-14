@@ -1,15 +1,14 @@
 #!/bin/bash
 
-
-if [ "$#" -eq 3 ]; then
-	echo "Usage: $0 <exec-masscan-allports.sh> <interface> <rate>"
+if [ "$#" -ne 3 ]; then
+	echo "Usage: $0 <list file> <interface> <rate>"
 	exit
 fi
 
-dash_delimited_network_range=$(echo $1 | tr -s '.' '-' | sed 's#/#-cidr-#g')
-CWD=$(pwd)
-ips=$($CWD/masscan/masscan-found-ips.txt)
-for ip in $ips; do
-	$1 $ip $2 $3
+hosts=$(cat $1)
+for host in $hosts; do
+	dash_delimited_ip=$(echo $host | tr -s '.' '-')
+	sudo masscan -p0-65535 --rate=$3 -e $2 -oG $dash_delimited_ip/masscan/$dash_delimited_ip-allports-masscan.log $host
+	wait
 done
 exit
