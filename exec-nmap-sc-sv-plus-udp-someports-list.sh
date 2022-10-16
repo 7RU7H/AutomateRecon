@@ -19,6 +19,9 @@ for host in $hosts; do
 	else
 		nmap_pn_flag=""
 	fi
+	dash_delimited_ip=$(echo $host | tr -s '.' '-')
+	list=$(cat $dash_delimited_ip/masscan/$dash_delimited_ip-allports-masscan.log | grep -v "#" | awk '{print $7}' | cut -d "/" -f1 | tr -s '\n' ', ')
+	ports=${list:0:${list} - 1 }	
 	sudo nmap $nmap_pn_flag -sC -sV -oA $dash_delimited_ip/nmap/$dash_delimited_ip-Extensive-Allports --min-rate $2 -p- $host
 	wait
 	sudo nmap $nmap_pn_flag -sU -oA $dash_delimited_ip/nmap/$dash_delimited_ip-UDP --min-rate $2 -p- $host
