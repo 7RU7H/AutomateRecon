@@ -1,19 +1,19 @@
-# Note Template
-
-##Intel
+## Intel
 
 IP:
 OS:
+Arch:
 Hostname:
-Domain:  / Domain SID:
+DNS:
+Domain: 
+Domain SID:
 Machine Purpose:
 Services:
 Service Languages:
+Email Address & Formatting:
+Username Format:
 
-
-## Objective
-
-
+## Objectives
 What do have in the solutions inventory to meet large network objective?
 
 ## Solution Inventory Map
@@ -34,5 +34,6 @@ Section to solve
 ### Todo
 
 ### Done
+
 
 
