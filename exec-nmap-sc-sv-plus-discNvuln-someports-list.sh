@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ "$#" -ne 2 ]; then
+if [ "$#" -ne 3 ]; then
 	echo "Usage: $0 <list file> <interface> <rate integer>"
 	exit
 fi
