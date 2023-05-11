@@ -13,6 +13,6 @@ for host in $hosts; do
 	mkdir $dash_delimited_ip/{nmap,masscan,Screenshots,data} -p
 	touch $dash_delimited_ip/$dash_delimited_ip-Notes.md
 done
-mv $1 $2/
+mv $1 $2
 echo "Moved the list into the supplied parent directory along with creating sub directories for each ip"
 exit

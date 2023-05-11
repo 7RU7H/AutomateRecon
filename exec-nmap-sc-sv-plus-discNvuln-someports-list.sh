@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$#" -ne 2 ]; then
-	echo "Usage: $0 <list file> <rate integer>"
+	echo "Usage: $0 <list file> <interface> <rate integer>"
 	exit
 fi
 
@@ -10,7 +10,7 @@ total=$(wc -l $1)
 count=1
 #nmap_pn_flag="" 
 for host in $hosts; do
-	sudo nmap -F -n --min-rate $2 $host 2>&1 > /tmp/nmap-err
+	sudo nmap -F -n --min-rate $3 -e $2 $host 2>&1 > /tmp/nmap-err
 	sn_output=$(cat /tmp/nmap-err)
 	if [[ "$sn_output" =~ ."try -Pn". ]]; then
 		nmap_pn_flag="-Pn"
@@ -23,11 +23,11 @@ for host in $hosts; do
 	dash_delimited_ip=$(echo $host | tr -s '.' '-')
 	list=$(cat $dash_delimited_ip/masscan/$dash_delimited_ip-allports-masscan.log | grep -v "#" | awk '{print $7}' | cut -d "/" -f1 | tr -s '\n' ', ')
 	ports=${list:0:${list} - 1 }
-	sudo nmap $nmap_pn_flag -sC -sV -oA $dash_delimited_ip/nmap/$dash_delimited_ip-Extensive-Found-Ports --min-rate $2 -p $ports $host
+	sudo nmap $nmap_pn_flag -sC -sV -oA $dash_delimited_ip/nmap/$dash_delimited_ip-Extensive-Found-Ports --min-rate $3 -e $2 -p $ports $host
 	wait
-	sudo nmap $nmap_pn_flag --script discovery -oA $dash_delimited_ip/nmap/$dash_delimited_ip-Discovery --min-rate $2 -p $ports $host
+	sudo nmap $nmap_pn_flag --script discovery -oA $dash_delimited_ip/nmap/$dash_delimited_ip-Discovery --min-rate $3 -e $2 -p $ports $host
 	wait
-	sudo nmap $nmap_pn_flag --script vuln -oA $dash_delimited_ip/nmap/$dash_delimited_ip-Vuln --min-rate $2 -p $ports $host
+	sudo nmap $nmap_pn_flag --script vuln -oA $dash_delimited_ip/nmap/$dash_delimited_ip-Vuln --min-rate $3 -e $2 -p $ports $host
 	wait	
 	echo ""
 	echo "Nmap has finish all 3 Scans against $host - Scan number $count of $total"
