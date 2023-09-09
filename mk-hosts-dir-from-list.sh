@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ "$#" -eq 1 ]; then
+if [ "$#" -ne 1 ]; then
 	echo "Usage: $0 <file containing a list ips>"
 	exit
 fi
