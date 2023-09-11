@@ -19,6 +19,9 @@ sed -i 's/$oldip/$newip/g' *-CMD-by-CMDs.md
 ls -1 Screenshots | awk '{print"![]("$1")"}'
 ```
 
+## Objectives
+
+
 ## Machine Connects list and reason:
 
 [[]] - Reason X
@@ -36,10 +39,9 @@ What edges do you have?
 ```
 
 ```
-#### Intel
+#### HUMINT
 
-#### Local Inventory
-
+#### Solution Inventory Map
 
 
 #### Todo List
