@@ -9,5 +9,5 @@ fi
 
 dash_delimited_network_range=$(echo $1 | tr -s '.' '-' | sed 's#/#-cidr-#g')
 CWD=$(pwd)
-cat $CWD/masscan/$dash_delimited_network_range-masscan.log | grep 'Host' | awk '{print $4}' sort -u | tee -a  $CWD/hosts.txt
+cat $CWD/masscan/$dash_delimited_network_range-masscan.log | grep 'Host' | awk '{print $4}' | sort -u | tee -a  $CWD/hosts.txt
 exit
