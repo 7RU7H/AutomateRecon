@@ -19,5 +19,5 @@ wpscan --url $url -e --rua --api-token $APIKEY -o $dash_delimited_url.wpscan
 wait
 echo "Previous Version: $initVersion"
 echo "Post update version if requried: $postUPDVersion"
-echo "
+echo ""
 exit
