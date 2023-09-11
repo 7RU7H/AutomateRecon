@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-if [ "$#" -eq 0 ]; then
+if [ "$#" -eq 3 ]; then
 	echo "Usage: $0 <target CIDR> <interface> <rate>"
 	exit
 fi
