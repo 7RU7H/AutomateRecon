@@ -9,7 +9,7 @@ STARTTIME=$(date)
 dash_delimited_ip=$(echo $1 | tr -s '.' '-')
 echo "Conducting Ping test against $1.."
 echo
-PINGOUT=$(ping -W 30 -c 1 $1) # check output if -Pn needed; if just exit - # TODO ttl for os detection
+PINGOUT=$(ping -W 30 -c 3 $1 | tee -a os-dectection-$dash_delimited_ip.ping) # check output if -Pn needed; if just exit - # TODO ttl for os detection
 wait
 ENDTIME=$(date)
 echo "Ping test complete against $1!"
