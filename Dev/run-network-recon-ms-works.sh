@@ -17,11 +17,6 @@ Network Purpose:
 Email Address & Formatting:
 Username Format:
 
-\`\`\`bash
-sed -i 's/\$oldip/\$newip/g' *-CMD-by-CMDs.md
-
-ls -1 Screenshots | awk '{print"![]("\$1")"}'
-\`\`\`
 
 ## Objectives
 What do have in the solutions inventory to meet larger objective?
@@ -32,13 +27,6 @@ What do have in the solutions inventory to meet larger objective?
 
 	
 #### Credentials and Hashes
-\`\`\`
-
-\`\`\`
-
-\`\`\`
-
-\`\`\`
 
 #### Intel
 

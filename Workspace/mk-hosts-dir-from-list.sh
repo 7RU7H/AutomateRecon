@@ -12,7 +12,7 @@ for host in $hosts; do
 	touch $dash_delimited_ip/$dash_delimited_ip-Notes.md
 	echo "## Intel
 
-IP:
+IP: $host
 OS:
 Arch:
 Hostname:
@@ -25,11 +25,6 @@ Service Languages:
 Email Address & Formatting:
 Username Format:
 
-\`\`\`bash
-sed -i 's/\$oldip/\$newip/g' *-CMD-by-CMDs.md
-
-ls -1 Screenshots | awk '{print"![]("\$1")"}'
-\`\`\`
 
 ## Machine Connects list and reason:
 
@@ -45,9 +40,7 @@ What edges do you have?
 ## Data Collected
 
 #### Credentials
-\`\`\`
 
-\`\`\`
 #### Intel
 
 #### Local Inventory
