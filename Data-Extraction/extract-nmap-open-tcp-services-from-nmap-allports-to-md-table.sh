@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$#" -ne 1 ]; then
-	echo "Usage: $0 <IP adress>"
+	echo "Usage: $0 <IP address>"
 	exit
 fi
 
