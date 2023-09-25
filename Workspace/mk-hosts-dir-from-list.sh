@@ -41,7 +41,7 @@ What edges do you have?
 
 #### Credentials
 
-#### Intel
+#### HUMINT
 
 #### Local Inventory
 

@@ -1,18 +1,28 @@
 #!/bin/bash
 
-if [ "$#" -eq 0 ]; then
-	echo "Usage: $0 <file containing a list ips> <parent directory name>"
+if [ "$#" -eq 2 ]; then
+	echo "Usage: $0 <parent directory name> <Initial CIDR Range of network>"
 	exit
 fi
 
-mkdir $2
-hosts=$(cat $1)
-cd $2
-for host in $hosts; do
-	dash_delimited_ip=$(echo $host | tr -s '.' '-')
-	mkdir $dash_delimited_ip/{nmap,masscan,Screenshots,data} -p
-	touch $dash_delimited_ip/$dash_delimited_ip-Notes.md
-done
-mv $1 $2
-echo "Moved the list into the supplied parent directory along with creating sub directories for each ip"
+mkdir $1
+echo "# $1 General Notes
+CIDR: $2
+Subnets:
+External:
+Interal:
+Domain name:
+Network Purpose:
+Email Address & Formatting:
+Username Format:
+##Scope
+Do Not!
+- X
+##Objectives
+#### What do have in the solutions inventory to meet larger objective?
+
+####Credentials and Hashes
+####HUMINT
+####Todo List
+#### Timeline of tasks completed" > $1/$1-General-Notes.md
 exit

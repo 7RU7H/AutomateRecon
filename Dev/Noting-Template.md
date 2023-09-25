@@ -13,11 +13,6 @@ Service Languages:
 Email Address & Formatting:
 Username Format:
 
-```bash
-sed -i 's/$oldip/$newip/g' *-CMD-by-CMDs.md
-
-ls -1 Screenshots | awk '{print"![]("$1")"}'
-```
 
 ## Objectives
 
@@ -36,9 +31,7 @@ What edges do you have?
 ## Data Collected
 
 #### Credentials
-```
 
-```
 #### HUMINT
 
 #### Solution Inventory Map
