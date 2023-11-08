@@ -8,7 +8,7 @@ fi
 CWD=$(pwd)
 mkdir enumFourLinux
 dash_delimited_ip=$(echo $1 | tr -s '.' '-')
-enum4linux -a -v $1 | tee -a $CWD/enumFourLinux/efl-a-$dash_delimited_ip
+enum4linux -a -v -A $1 | tee -a $CWD/enumFourLinux/efl-a-$dash_delimited_ip
 
 
 
