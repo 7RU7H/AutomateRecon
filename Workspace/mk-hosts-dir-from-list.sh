@@ -8,9 +8,10 @@ fi
 hosts=$(cat $1)
 for host in $hosts; do
 	dash_delimited_ip=$(echo $host | tr -s '.' '-')
-	mkdir $dash_delimited_ip/{nmap,masscan,Screenshots,data} -p
-	touch $dash_delimited_ip/$dash_delimited_ip-Notes.md
-	echo "## Intel
+	mkdir $dash_delimited_ip/{nmap,Screenshots,data,server} -p
+	echo '$dash_delimited_ip Notes 
+	
+## Intel
 
 IP: $host
 OS:
@@ -24,7 +25,38 @@ Services:
 Service Languages:
 Email Address & Formatting:
 Username Format:
+Credentials:
 
+
+
+#### Mindmap-per Service
+
+- OS detect, run generate noting for nmap
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+
+
+
+#### Todo List
+
+' > $dash_delimited_ip/$dash_delimited_ip-Notes.md
+
+
+echo '# $dash_delimited_ip Meta-Notes
 
 ## Machine Connects list and reason:
 
@@ -45,15 +77,13 @@ What edges do you have?
 
 #### Local Inventory
 
-
-
 #### Todo List
-
-
 
 #### Timeline of tasks completed
 
-" > $dash_delimited_ip/$dash_delimited_ip-Notes.md
- 
+' > $dash_delimited_ip/$dash_delimited_ip-Meta-Notes.md
+
+
+
 done
 exit
