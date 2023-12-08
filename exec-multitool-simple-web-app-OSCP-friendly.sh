@@ -8,7 +8,7 @@ fi
 
 URL=$1
 IP=$(echo $URL | awk -F/ '{print $3}')
-nuclei -u $URL -etags exploit -me nuclei
+nuclei -u $URL -debug -etags exploit,rce,sqli,xss,lfi,ssti,ssrf,csrf,xxe,traversal,crlf,csv,injection,pollution,smuggling -me nuclei
 wait
 gospider -d 0 -s "$URL" -c 5 -t 100 -d 5 --blacklist jpg,jpeg,gif,css,tif,tiff,png,ttf,woff,woff2,ico,pdf,svg,txt -o gospider
 wait
