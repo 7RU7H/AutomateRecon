@@ -7,7 +7,7 @@ if [ "$#" -ne 1 ]; then
 fi
 
 CWD=$(pwd)
-SS=$(ls -tlr $CWD/Screenshots)
+SS=$(ls -t1r $CWD/Screenshots)
 for png in SS; do
 	echo "![]($png)" >> $1
 	echo "" >> $1
