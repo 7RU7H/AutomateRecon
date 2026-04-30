@@ -107,9 +107,7 @@ func main() {
 	// var workingDirectory string
 
 	flag.StringVar(&ipAddress, "i", "127.0.0.1", "Provide a IP address to target enumeration tasks")
-	//flag.S	if err != nil {
-		fmt.Fprintln(os.Stderr, "Error:", err)
-	}tringVar(&workingDirectory, "d", "$PWD", "Provide a working directory to save output")
+	//flag.StringVar(&workingDirectory, "d", "$PWD", "Provide a working directory to save output")
 	flag.Parse()
 
 	if len(os.Args) <= 1 {
