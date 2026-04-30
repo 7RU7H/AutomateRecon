@@ -66,6 +66,9 @@ func downloadWebRootSource(ipAddress, protocol string) error {
 	requestURL := fmt.Sprintf("%s://%s", protocol, ipAddress)
 	outputFile := fmt.Sprintf("%s-www-root.html", protocol)
 	curlWebRootHTTP := exec.Command("curl", requestURL, "-o", outputFile)
+	curlWebRootHTTP.Stdout = os.Stdout
+	curlWebRootHTTP.Stderr = os.Stderr
+
 	if err := curlWebRootHTTP.Run(); err != nil {
 		fmt.Fprintln(os.Stderr, "Error:", err)
 		fmt.Fprintf(os.Stdout, "Unable to execute `%s %s`\n", "curl", cmdArgs)
