@@ -44,7 +44,7 @@ func pingHost(ipAddress string) (bool, error) {
 	return true, nil
 }
 
-func testWebserverConnectivity(protocol, ipAddress string) (bool, error) {
+func testWebserverConnectivity(protocol, ipAddress string, ctx context.Context) (bool, error) {
 	requestURL := fmt.Sprintf("%s://%s", protocol, ipAddress)
 	req, err := http.NewRequestWithContext(ctx, "GET", requestURL, nil)
 	if err != nil {
@@ -130,12 +130,12 @@ func main() {
 		os.Exit(-1)
 	}
 
-	httpConnect, err := testWebserverConnectivity("http", ipAddress)
+	httpConnect, err := testWebserverConnectivity("http", ipAddress, ctx)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "Error:", err)
 	}
 
-	httpsConnect, err := testWebserverConnectivity("http", ipAddress)
+	httpsConnect, err := testWebserverConnectivity("http", ipAddress, ctx)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "Error:", err)
 	}
