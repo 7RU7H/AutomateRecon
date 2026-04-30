@@ -61,7 +61,6 @@ func testWebserverConnectivity(protocol, ipAddress string, ctx context.Context) 
 	}
 }
 
-// Use first test connectivity with curl and then to download the http and https root webpages
 func downloadWebRootSource(ipAddress, protocol string) error {
 	requestURL := fmt.Sprintf("%s://%s", protocol, ipAddress)
 	outputFile := fmt.Sprintf("%s-www-root.html", protocol)
