@@ -63,16 +63,9 @@ func testWebserverConnectivity(protocol, ipAddress string, ctx context.Context) 
 
 // Use first test connectivity with curl and then to download the http and https root webpages
 func downloadWebRootSource(ipAddress, protocol string) error {
-	var cmdArgs string
-	builder := strings.Builder{}
-
 	requestURL := fmt.Sprintf("%s://%s", protocol, ipAddress)
-	builder.WriteString(requestURL)
-	builder.WriteString(" -o ")
-	builder.WriteString(protocol)
-	builder.WriteString("-www-root.html")
-	cmdArgs = builder.String()
-	curlWebRootHTTP := exec.Command("curl", cmdArgs)
+	outputFile := fmt.Sprintf("%s-www-root.html", protocol)
+	curlWebRootHTTP := exec.Command("curl", requestURL, "-o", outputFile)
 	if err := curlWebRootHTTP.Run(); err != nil {
 		fmt.Fprintln(os.Stderr, "Error:", err)
 		fmt.Fprintf(os.Stdout, "Unable to execute `%s %s`\n", "curl", cmdArgs)
@@ -80,7 +73,7 @@ func downloadWebRootSource(ipAddress, protocol string) error {
 	}
 
 	time.Sleep(1 * time.Second)
-	fmt.Fprintf(os.Stdout, "Completed attempts to curl %s://%s", protocol, ipAddress)
+	fmt.Fprintf(os.Stdout, "Completed attempts to download the web root with curl %s://%s", protocol, ipAddress)
 
 	return nil
 }
