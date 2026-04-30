@@ -23,7 +23,7 @@ func handleTermination(cancel context.CancelFunc) {
 // Ping host to get TTL data to detirmine OS type
 func pingHost(ipAddress string) (bool, error) {
 	pingHostThrice := exec.Command("ping", "-c 3", ipAddress)
-	_, err := pingHostThrice.StdoutPipe()
+	stdout, err := pingHostThrice.StdoutPipe()
 	if err != nil {
 		panic(err)
 	}
@@ -37,6 +37,8 @@ func pingHost(ipAddress string) (bool, error) {
 		fmt.Fprintf(os.Stdout, "Unable to complete execution of `%s %s`\n", "ping -c 3 ", ipAddress)
 		return false, err
 	}
+
+	fmt.Fprintln(os.Stdout, "---=== Ping Results ===---\n", stdout)
 
 	time.Sleep(1 * time.Second)
 	fmt.Fprintf(os.Stdout, "Completed attempts to ping host, additional reminder to screenshot ping.png for notes")
@@ -59,8 +61,7 @@ func testWebserverConnectivity(protocol, ipAddress string, ctx context.Context) 
 		return false, err
 	}
 
-	fmt.Fprintln(os.Stdout, "client: got response!\n")
-	fmt.Fprintln(os.Stdout, "client: status code: %d\n", res.StatusCode)
+	fmt.Fprintln(os.Stdout, "client: status code: ", res.StatusCode)
 	if res.StatusCode != 200 {
 		return false, nil
 	} else {
