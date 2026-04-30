@@ -55,7 +55,7 @@ func testWebserverConnectivity(protocol, ipAddress string) (bool, error) {
 
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
-		fmt.Fprintln(os.Stderr,"Client Error making http request:", err)
+		fmt.Fprintln(os.Stderr, "Client Error making http request:", err)
 		return false, err
 	}
 
@@ -86,7 +86,7 @@ func downloadWebRootSource(ipAddress, protocol string) error {
 		return err
 	}
 	if err := curlWebRootHTTP.Wait(); err != nil {
-		fmt.Fprintln(os.StdhttpConnect = falseerr, "Error:", err)
+		fmt.Fprintln(os.Stdout, "Error:", err)
 		fmt.Fprintf(os.Stdout, "Unable to complete execution of `%s %s`\n", "curl", cmdArgs)
 		return err
 	}
