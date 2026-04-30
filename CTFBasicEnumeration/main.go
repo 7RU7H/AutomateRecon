@@ -25,16 +25,8 @@ func pingHost(ipAddress string) (bool, error) {
 	pingHostThrice := exec.Command("ping", "-c 3", ipAddress)
 	stdout, err := pingHostThrice.CombinedOutput()
 	if err != nil {
-		panic(err)
-	}
-	if err := pingHostThrice.Start(); err != nil {
 		fmt.Fprintln(os.Stderr, "Error:", err)
-		fmt.Fprintf(os.Stdout, "Unable to execute `%s %s`\n", "ping -c 3 ", ipAddress)
-		return false, err
-	}
-	if err := pingHostThrice.Wait(); err != nil {
-		fmt.Fprintln(os.Stderr, "Error:", err)
-		fmt.Fprintf(os.Stdout, "Unable to complete execution of `%s %s`\n", "ping -c 3 ", ipAddress)
+		fmt.Fprintf(os.Stdout, "Unable to fully execute `%s %s`\n", "ping -c 3 ", ipAddress)
 		return false, err
 	}
 
