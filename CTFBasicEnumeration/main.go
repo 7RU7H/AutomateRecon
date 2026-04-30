@@ -53,7 +53,7 @@ func testWebserverConnectivity(protocol, ipAddress string, ctx context.Context) 
 		return false, err
 	}
 
-	fmt.Fprintln(os.Stdout, "client: status code: ", res.StatusCode)
+	fmt.Fprintf(os.Stdout, "client: status code: %d\n", res.StatusCode)
 	if res.StatusCode != 200 {
 		return false, nil
 	} else {
@@ -73,14 +73,9 @@ func downloadWebRootSource(ipAddress, protocol string) error {
 	builder.WriteString("-www-root.html")
 	cmdArgs = builder.String()
 	curlWebRootHTTP := exec.Command("curl", cmdArgs)
-	if err := curlWebRootHTTP.Start(); err != nil {
+	if err := curlWebRootHTTP.Run(); err != nil {
 		fmt.Fprintln(os.Stderr, "Error:", err)
 		fmt.Fprintf(os.Stdout, "Unable to execute `%s %s`\n", "curl", cmdArgs)
-		return err
-	}
-	if err := curlWebRootHTTP.Wait(); err != nil {
-		fmt.Fprintln(os.Stdout, "Error:", err)
-		fmt.Fprintf(os.Stdout, "Unable to complete execution of `%s %s`\n", "curl", cmdArgs)
 		return err
 	}
 
@@ -150,4 +145,5 @@ func main() {
 	<-gracefulShutdown
 	_, cancel = context.WithTimeout(context.Background(), 3*time.Second)
 	defer handleTermination(cancel)
+	os.Exit(0)
 }
